@@ -1,7 +1,7 @@
 import {Link, useHistory} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-function Groups (){
+function Groups (props){
 
     const [groups, setGroups] = useState([])
     
@@ -12,10 +12,11 @@ function Groups (){
         //     setGroups(data)
         // })
         // .catch(err=>console.log(err)) 
-        setGroups([{name: 'test group 1'}, {name: 'test group 2'}, {name: 'test group 3'}, {name: 'test group 4'}])
+        setGroups([{name: 'them bois'}, {name: 'chicas'}, {name: 'shquad'}, {name: 'yee yee'}])
     },[])
+    // action={props.action}
     let groupRender = groups.map((each,index)=>{
-        return <OneGroup group={each} key={index}/>
+        return <OneGroup group={each} key={index} view={props.view}/>
     })
     
     return (
@@ -28,7 +29,7 @@ function Groups (){
 function OneGroup(props){
     let group = props.group
     return (
-        <div className="onegroup">
+        <div className="onegroup" onClick={()=>{props.view()}}>
             <Link to="/Group_Users" className="link">{group.name}</Link>
         </div>
     )

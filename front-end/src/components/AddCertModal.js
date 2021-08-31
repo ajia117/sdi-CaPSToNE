@@ -6,12 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import Users from './Users.js'
+import AddCert from './AddCert.js';
 import SendIcon from '@material-ui/icons/Send';
-import AddIcon from '@material-ui/icons/PersonAdd';
-import { InputAdornment } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,12 +28,9 @@ export default function AlertDialogSlide() {
 
   return (
     <div>
-      <IconButton color='secondary' aria-label="delete" onClick={handleClickOpen}>
-  <AddIcon />
-</IconButton>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add User Info
-      </Button> */}
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Add 350-1 Certificate
+      </Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -46,9 +39,9 @@ export default function AlertDialogSlide() {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Add User Info"}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{"Add Certificate"}</DialogTitle>
         <DialogContent>
-      <Users />
+      <AddCert />
       </DialogContent>
       </Dialog>
         {/* <Button

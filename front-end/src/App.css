@@ -8,6 +8,8 @@
   min-width: 200px;
   background-color: #394c5d;
   height: 100vh;
+  box-shadow: 1px 0px 3px black;
+  z-index: 5;
   /* display: flex;
   flex-direction: column;
   justify-content: flex-start; */
@@ -26,13 +28,15 @@
   color: white;
 }
 .left-items {
-  width: 95%;
-  max-width: 95%;
+  width: 90%;
+  max-width: 90%;
   margin: auto;
 }
 .searchbar {
   width: 95%;
   margin: auto;
+  text-align: center;
+  padding: 3px 0px;
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid whitesmoke;
@@ -57,8 +61,10 @@ button:hover {
   background-color: #2f705d;
   width: 90%;
   margin: 12px 5%;
+  border: 1px solid whitesmoke;
   border-radius: 10px;
   transition: 0.5s;
+  box-shadow: 0px 0px 5px black;
 }
 .onegroup:hover {
   cursor: pointer;
@@ -69,6 +75,22 @@ button:hover {
   text-decoration: none;
   color: white;
   font-size: 1.2em;
+}
+.accordion {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 12px;
+}
+.groupname {
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 12px 0px;
+}
+.selectbar {
+  width: 80%;
+  max-width: 750px;
+  margin: auto;
 }
 /*
 pale blue - #394c5d

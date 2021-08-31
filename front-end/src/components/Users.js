@@ -9,6 +9,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import {AssignmentIcon} from '@material-ui/icons/Assignment';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
+import CardIcon from '@material-ui/icons/Payment';
 
 
 const rank = [
@@ -230,6 +231,19 @@ export default function MultilineTextFields() {
             }}
             variant="outlined"
             />
+
+      <TextField
+          required
+          label="DODID"
+          id="standard-start-adornment"
+          onChange={handleChange}
+          helperText="Please input your DODID #"
+          InputProps={{
+            startAdornment: <InputAdornment position="start"> <CardIcon /> </InputAdornment>,
+          }}
+          variant="outlined"
+        />
+
               <p></p>
 
               <Button
