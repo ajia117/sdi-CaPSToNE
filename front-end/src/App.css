@@ -69,7 +69,7 @@ button:hover {
 .onegroup:hover {
   cursor: pointer;
   background-color: #b2c0cf;
-  color: #2f705d;
+  color: black;
 }
 .link {
   text-decoration: none;
@@ -91,6 +91,12 @@ button:hover {
   width: 80%;
   max-width: 750px;
   margin: auto;
+}
+.deletebutton:hover {
+  color:rgb(248, 123, 123);
+}
+.addbutton:hover {
+  color: rgb(110, 202, 110);
 }
 /*
 pale blue - #394c5d

@@ -12,7 +12,8 @@ function Groups (props){
         //     setGroups(data)
         // })
         // .catch(err=>console.log(err)) 
-        setGroups([{name: 'them bois'}, {name: 'chicas'}, {name: 'shquad'}, {name: 'yee yee'}])
+        setGroups([{name: 'them bois'}, {name: 'chicas'}, {name: 'shquad'}, {name: 'yee yee'}]);
+        props.view('group')
     },[])
     // action={props.action}
     let groupRender = groups.map((each,index)=>{
@@ -29,9 +30,11 @@ function Groups (props){
 function OneGroup(props){
     let group = props.group
     return (
-        <div className="onegroup" onClick={()=>{props.view()}}>
-            <Link to="/Group_Users" className="link">{group.name}</Link>
-        </div>
+        <Link to="/Group_Users" className="link">
+            <div className="onegroup" onClick={()=>{props.view()}}>
+                {group.name}
+            </div>
+        </Link>
     )
 }
 
