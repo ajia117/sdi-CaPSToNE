@@ -21,7 +21,7 @@ exports.up = function(knex) {
     table.string('grade');
     table.string('last_name');
     table.string('first_name');
-    table.string('email')
+    table.string('email');
     table.foreign('group_id').references('id').inTable('groups');
     table.foreign('organization_id').references('id').inTable('organizations');
   })
