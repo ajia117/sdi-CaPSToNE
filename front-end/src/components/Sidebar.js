@@ -1,21 +1,20 @@
 import {useState, useEffect, useRef } from 'react';
 import UserModal from './UserModal.js'
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import AddGroupModal from './AddGroupModal.js'
+// import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import IconButton from '@material-ui/core/IconButton';
-
-
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import green from '@material-ui/core/colors';
+import PublishIcon from '@material-ui/icons/Publish';
 
 function Sidebar (props) {
     const searchRef = useRef();
     const [searchbar, setSearchbar] = useState('');
-
-    // useEffect(()=>{
-    //     if (props.searchBar){
-    //         setSearchbar('group')
-    //     } else if (!props.searchBar){
-    //         setSearchbar('user')
-    //     }
-    // },[]);
+    const [style, setStyle] = useState({});
+    
+    useEffect(()=>{
+        
+    },[]);
 
     function handleSearch(){
         if (props.searchBar === true){
@@ -37,17 +36,24 @@ function Sidebar (props) {
           </div>
             <br></br><br></br><br></br>
           <div className="left-items">
-            <button>Export All -</button>
+            <p style={{color: '#c4d3e4', fontSize: '1.2em', margin: 0}}>Export All</p>
+            <IconButton style={{color: '#c4d3e4', backgroundColor: 'transparent', padding: '0', marginTop: '0'}} size="large" aria-label="delete">
+              <PublishIcon />
+            </IconButton>
           </div>
-            <br></br>
-          <div className="left-items">
-            <button>Remove Group -</button>
             <br></br><br></br>
-            <IconButton color='secondary' aria-label="delete">
-          <GroupAddIcon />
-        </IconButton>
+          <div className="left-items" style={props.view === 'group' ? { display: 'initial' } : {display: 'none'}}>
+            <AddGroupModal addGroup={props.addGroup} />
+            <IconButton color="secondary" aria-label="delete" className="deletebutton">
+              <RemoveCircleOutlineIcon fontSize="large" />
+            </IconButton>
           </div>
-          <UserModal />
+          <div className="left-items" style={props.view === 'users' ? { display: 'initial' } : {display: 'none'}}>
+            <UserModal />
+            <IconButton color="secondary" aria-label="delete" className="deletebutton">
+              <RemoveCircleOutlineIcon fontSize="large" />
+            </IconButton>
+          </div>
         </div>
     )
 }

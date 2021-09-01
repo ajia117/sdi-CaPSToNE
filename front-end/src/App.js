@@ -20,41 +20,99 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    /*fetch()
+    /*fetch(allgroups)
     .then(res=>res.json())
     .then(data=>{
       this.setState({
-        groups: data
+        groups: data,
+        searchBar: this.state.searchBar,
+        view: this.state.view
       })
     })
     .catch() */
   }
-
-  handleSearch(data){
-    /*this.state.groups.filter(each=>{
-      return each.contains(data);
-    }) 
-    this.setState({
-      groups: data,
-      searchBar: this.searchBar,
-      view: this.view
+  search(data){
+    /*
+    if (!data){
+    fetch(allgroups)
+    .then(res=>res.json())
+    .then(data=>{
+      this.setState({
+        groups: data,
+        searchBar: this.state.searchBar,
+        view: this.state.view
+      })
     })
-    */
-
+    .catch()
+    } else {
+      let filtered = this.state.groups.filter(group=>{
+        return group.name.includes(data);
+      })
+      this.setState({
+        groups: filtered,
+        searchBar: this.state.searchBar,
+        view: this.state.view
+      })
+    }
+     */
+  }
+  handleAddUser(data){
+    /**fetch()
+     .then(res=>res.json())
+     .then(data=>{
+       this.setState({
+         
+       })
+     })
+     .catch()
+     */
+  }
+  handleDeleteUser(data){
+    /**fetch()
+     .then(res=>res.json())
+     .then(data=>{
+       this.setState({
+         
+       })
+     })
+     .catch()
+     */
+  }
+  handleAddGroup(data){
+    /**fetch()
+     .then(res=>res.json())
+     .then(data=>{
+       this.setState({
+         
+       })
+     })
+     .catch()
+     */
+  }
+  handleDeleteGroup(data){
+    /**fetch()
+     .then(res=>res.json())
+     .then(data=>{
+       this.setState({
+         
+       })
+     })
+     .catch()
+     */
   }
 
-  changeView(){
-    if (this.state.view === 'group'){
-      this.setState({
-        groups: this.state.groups,
-        searchBar: false,
-        view: 'user'
-      })
-    } else if (this.state.view === 'users'){
+  changeView(data){
+    if (data === 'group'){
       this.setState({
         groups: this.state.groups,
         searchBar: true,
         view: 'group'
+      })
+    } else if (data=== 'users'){
+      this.setState({
+        groups: this.state.groups,
+        searchBar: false,
+        view: 'users'
       })
       console.log('view after change:', this.state.view)
     }
@@ -64,7 +122,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <Sidebar searchBar={this.state.searchBar}/>
+        <Sidebar searchBar={this.state.searchBar} view={this.state.view} addGroup={this.handleAddGroup}/>
         <div className="appright">
           <div className="org-header">
             <h2>Organization Name</h2>
@@ -73,7 +131,7 @@ class App extends React.Component {
             <Router>
               <Route path="/login" render={props=><p>hello world from login</p>}/>
               <Route exact path="/Groups" render={props=><Groups view={this.changeView}/>}/>
-              <Route exact path="/Group_Users" render={props=><UsersList />}/>
+              <Route exact path="/Group_Users" render={props=><UsersList view={this.changeView}/>}/>
             </Router>
           </div>
         </div>

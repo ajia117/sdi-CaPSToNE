@@ -8,8 +8,9 @@ import Select from 'react-select';
 import AddCertModal from './AddCertModal.js';
 
 function UsersList (props) {
-
+    
     const [users, setUsers] = useState([])
+    const [filtered, setFiltered] = useState([])
     useEffect(()=>{
         /*fetch()
         .then(res=>res.json())
@@ -17,17 +18,32 @@ function UsersList (props) {
             setUsers(data)
         })
         .catch() */
-        setUsers([{rank: 'SSG', first_name: 'Cody', last_name: 'Raymond'}, {rank: 'SSG', first_name: 'Paul', last_name: 'Dykes'}, {rank: 'SSG?', first_name: 'Andre', last_name: 'Jia'}])
+        setUsers([{rank: 'SSG', first_name: 'Cody', last_name: 'Raymond', cyber_awareness: true, sere_100_2: false, accident_avoidance: true}, {rank: 'SSG', first_name: 'Paul', last_name: 'Dykes', cyber_awareness: true, sere_100_2: true, accident_avoidance: false}, {rank: 'COL?', first_name: 'Andre', last_name: 'Jia', cyber_awareness: true, sere_100_2: true, accident_avoidance: true},{rank: 'SGT', first_name: 'Cherokee', last_name: 'Walters', cyber_awareness: true, sere_100_2: false, accident_avoidance: false},{rank: 'SGT', first_name: 'Mark', last_name: 'Arbuckle', cyber_awareness: false, sere_100_2: true, accident_avoidance: true}])
+        setFiltered([{rank: 'SSG', first_name: 'Cody', last_name: 'Raymond', cyber_awareness: true, sere_100_2: false, accident_avoidance: true}, {rank: 'SSG', first_name: 'Paul', last_name: 'Dykes', cyber_awareness: true, sere_100_2: true, accident_avoidance: false}, {rank: 'COL', first_name: 'Andre', last_name: 'Jia', cyber_awareness: true, sere_100_2: true, accident_avoidance: true},{rank: 'SGT', first_name: 'Cherokee', last_name: 'Walters', cyber_awareness: true, sere_100_2: false, accident_avoidance: false},{rank: 'SGT', first_name: 'Mark', last_name: 'Arbuckle', cyber_awareness: false, sere_100_2: true, accident_avoidance: true}])
+        props.view('users')
     },[]);
 
-    let userList = users.map((each,index)=>{
+    function handleChange(option){
+        if (option.value === 'no_filter'){
+            setFiltered(users)
+        } else {
+            let certFilter = users.filter(each=>{
+                return each[option.value] === false;
+            })
+            setFiltered(certFilter)
+        }
+    }
+
+    let userList = filtered.map((each,index)=>{
         return <MakeUser user={each} key={index}/>
     })
+
     const options = [
-        {value: 'some training', label: 'Cyber Awareness'},
-        {value: 'some more training', label: 'SERE 100.2'},
-        {value: 'more training...', label: 'Accident Avoidance'},
-        {value: 'last training...', label: 'OPSEC'}
+        {value: 'no_filter', label: 'No filter'},
+        {value: 'cyber_awareness', label: 'Cyber Awareness'},
+        {value: 'sere_100_2', label: 'SERE 100.2'},
+        {value: 'accident_avoidance', label: 'Accident Avoidance'},
+        {value: 'opsec', label: 'OPSEC'}
     ]
     return (
         <div>
@@ -35,7 +51,7 @@ function UsersList (props) {
                 <h4 className="groupname">Group Name</h4>
             </div><br></br>
             <div>   
-                <Select options={options} className="selectbar" placeholder="Filter by Certification..."/>
+                <Select options={options} onChange={handleChange} className="selectbar" placeholder="Filter by Certification..."/>
             </div>
             <div>
                 {userList}
