@@ -1,38 +1,114 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
+  text-align:center;
+}
+.appleft {
+  width: 20%;
+  max-width: 275px;
+  min-width: 200px;
+  background-color: #394c5d;
+  height: 100vh;
+  box-shadow: 1px 0px 3px black;
+  z-index: 5;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start; */
+}
+.appright {
+  width: 100%;
+  background-color: #c4d3e4;
+  height: 100vh;
+}
+.org-header {
+  background-color: #1e3454;
+}
+.org-header h2 {
+  margin: 0;
+  padding: 18px 0px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.left-items {
+  width: 90%;
+  max-width: 90%;
+  margin: auto;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.searchbar {
+  width: 95%;
+  margin: auto;
+  text-align: center;
+  padding: 3px 0px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid whitesmoke;
 }
+button {
+  background-color: transparent;
+  font-size: 1.1em;
+  border: 1px solid whitesmoke;
+  padding: 6px 8px;
+  border-radius: 4px;
+  color: whitesmoke;
+  cursor: pointer;
+  transition: 0.5s;
+  width: 100%;
+}
+button:hover {
+  background-color: #c4d3e4;
+  color: #394c5d;
+}
+.onegroup {
+  padding: 12px 0px;
+  background-color: #2f705d;
+  width: 90%;
+  margin: 12px 5%;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  transition: 0.5s;
+  box-shadow: 0px 0px 5px black;
+}
+.onegroup:hover {
+  cursor: pointer;
+  background-color: #b2c0cf;
+  color: black;
+}
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+}
+.accordion {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 12px;
+}
+.groupname {
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 12px 0px;
+}
+.selectbar {
+  width: 80%;
+  max-width: 750px;
+  margin: auto;
+}
+.deletebutton:hover {
+  color:rgb(248, 123, 123);
+}
+.addbutton:hover {
+  color: rgb(110, 202, 110);
+}
+/*
+pale blue - #394c5d
+olive - #33444b
+dark greyblue - #343b47
+pale greyish white - #c4d3e4
+navy blue - #1e3454
+
+
+orange - #fc7400
+light orange - #ffa001
+pale light green - #00b49d
+pale dark green - #007563
+dark green - #012523
+*/
