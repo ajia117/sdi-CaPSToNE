@@ -5,7 +5,8 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('organizations').insert([
-        {name: 'test'}
+        {name: 'test'},
+        {name: "Fate Of The Furious"}
       ]);
     })
 };
