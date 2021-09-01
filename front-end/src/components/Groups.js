@@ -6,18 +6,17 @@ function Groups (props){
     const [groups, setGroups] = useState([])
     
     useEffect(()=>{
-        // fetch()
-        // .then(res->res.json())
-        // .then(data=>{
-        //     setGroups(data)
-        // })
-        // .catch(err=>console.log(err)) 
-        setGroups([{name: 'them bois'}, {name: 'chicas'}, {name: 'shquad'}, {name: 'yee yee'}]);
+        fetch('http://localhost:8080/all')
+        .then(res=>res.json())
+        .then(data=>{
+            setGroups(data)
+        })
+        .catch(err=>console.log(err)) 
+        
         props.view('group')
     },[])
-    // action={props.action}
     let groupRender = groups.map((each,index)=>{
-        return <OneGroup group={each} key={index} view={props.view}/>
+        return <OneGroup group={each} key={index} renderUsers={props.renderUsers} view={props.view}/>
     })
     
     return (
@@ -28,11 +27,14 @@ function Groups (props){
 }
 
 function OneGroup(props){
-    let group = props.group
+
+    function handleClick(){
+        props.renderUsers(props.group.group_id)
+    }
     return (
-        <Link to="/Group_Users" className="link">
-            <div className="onegroup" onClick={()=>{props.view()}}>
-                {group.name}
+        <Link to={`/Group_Users/${props.group.group_id}`} className="link">
+            <div className="onegroup" onClick={handleClick}>
+                {props.group.group_id}
             </div>
         </Link>
     )
