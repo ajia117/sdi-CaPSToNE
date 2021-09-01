@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import CardIcon from '@material-ui/icons/Payment';
 
 
-const rank = [
+const catagory = [
   {
     value: 'Enlisted',
     label: 'Enlisted',
@@ -27,7 +27,7 @@ const rank = [
   },
 ];
 
-const grade = [
+const rank = [
   {
     value: 'Private',
     label: 'Private',
@@ -139,21 +139,21 @@ const useStyles = makeStyles((theme) => ({
 export default function MultilineTextFields() {
   const classes = useStyles();
   const [text, setText] = React.useState('text');
+  const [catagories, setCatagory] = React.useState('text');
   const [ranks, setRank] = React.useState('text');
-  const [grades, setGrade] = React.useState('text');
-  const [catagory, setCatagory] = React.useState('text');
+  
 
 
   const handleChange = (event) => {
     setText(event.target.value);
   };
 
-  const handleRankChange = (event) => {
-    setRank(event.target.value);
+  const handleCatagoryChange = (event) => {
+    setCatagory(event.target.value);
   };
 
-  const handleGradeChange = (event) => {
-    setGrade(event.target.value);
+  const handleRankChange = (event) => {
+    setRank(event.target.value);
   };
 
   return (
@@ -163,6 +163,22 @@ export default function MultilineTextFields() {
       <p></p>
       <TextField
       required
+              id="outlined-select-Catagory"
+              select
+              label="Catagory"
+              value={catagories}
+              onChange={handleCatagoryChange}
+              helperText="Please select your Catagory"
+              variant="outlined"
+            >
+              {catagory.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+            required
               id="outlined-select-rank"
               select
               label="Rank"
@@ -172,22 +188,6 @@ export default function MultilineTextFields() {
               variant="outlined"
             >
               {rank.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            <TextField
-            required
-              id="outlined-select-grade"
-              select
-              label="Grade"
-              value={grades}
-              onChange={handleGradeChange}
-              helperText="Please select your Rank"
-              variant="outlined"
-            >
-              {grade.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>

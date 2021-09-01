@@ -13,14 +13,13 @@ function UsersList (props) {
     const [users, setUsers] = useState([])
     const [filtered, setFiltered] = useState([])
     useEffect(()=>{
-        /*fetch()
+        fetch(`http://localhost:8080/group/${props.users}`)
         .then(res=>res.json())
         .then(data=>{
             setUsers(data)
+            setFiltered(data)
         })
-        .catch() */
-        setUsers([{rank: 'SSG', first_name: 'Cody', last_name: 'Raymond', cyber_awareness: true, sere_100_2: false, accident_avoidance: true}, {rank: 'SSG', first_name: 'Paul', last_name: 'Dykes', cyber_awareness: true, sere_100_2: true, accident_avoidance: false}, {rank: 'COL?', first_name: 'Andre', last_name: 'Jia', cyber_awareness: true, sere_100_2: true, accident_avoidance: true},{rank: 'SGT', first_name: 'Cherokee', last_name: 'Walters', cyber_awareness: true, sere_100_2: false, accident_avoidance: false},{rank: 'SGT', first_name: 'Mark', last_name: 'Arbuckle', cyber_awareness: false, sere_100_2: true, accident_avoidance: true}])
-        setFiltered([{rank: 'SSG', first_name: 'Cody', last_name: 'Raymond', cyber_awareness: true, sere_100_2: false, accident_avoidance: true}, {rank: 'SSG', first_name: 'Paul', last_name: 'Dykes', cyber_awareness: true, sere_100_2: true, accident_avoidance: false}, {rank: 'COL', first_name: 'Andre', last_name: 'Jia', cyber_awareness: true, sere_100_2: true, accident_avoidance: true},{rank: 'SGT', first_name: 'Cherokee', last_name: 'Walters', cyber_awareness: true, sere_100_2: false, accident_avoidance: false},{rank: 'SGT', first_name: 'Mark', last_name: 'Arbuckle', cyber_awareness: false, sere_100_2: true, accident_avoidance: true}])
+        .catch() 
         props.view('users')
     },[]);
 
@@ -54,7 +53,7 @@ function UsersList (props) {
         <div>
             <div>
                 <button onClick={groupView}>{`< Group View`}</button>
-                <h4 className="groupname">Group Name</h4>
+                <h4 className="groupname">{`Group ${props.users}`}</h4>
             </div><br></br>
             <div>   
                 <Select options={options} onChange={handleChange} className="selectbar" placeholder="Filter by Certification..."/>
@@ -68,6 +67,15 @@ function UsersList (props) {
 
 function MakeUser (props) {
     let userData = props.user;
+    const [userInfo, setUserInfo] = useState([])
+    useEffect(()=>{
+        fetch(`http://localhost:8080/users${userData.id}/trackers`)
+        .then(res=>res.json())
+        .then(data=>{
+            setUserInfo(data)
+        })
+        .catch()
+    },[]);
 
     return (
         <div className="accordion">
@@ -81,7 +89,11 @@ function MakeUser (props) {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        {`The rest of ${userData.rank} ${userData.last_name}, ${userData.first_name}'s data`}
+                        <ul>
+                        {userInfo.map((each,index)=>{
+                            return <li>this is a tracker</li>
+                        })}
+                        </ul>
                         <AddCertModal />
                     </Typography>
                 </AccordionDetails>
