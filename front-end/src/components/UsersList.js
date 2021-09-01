@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Select from 'react-select';
 import AddCertModal from './AddCertModal.js';
+import { useHistory } from 'react-router-dom';
 
 function UsersList (props) {
     
@@ -37,7 +38,11 @@ function UsersList (props) {
     let userList = filtered.map((each,index)=>{
         return <MakeUser user={each} key={index}/>
     })
+    const history = useHistory();
 
+    function groupView(){
+        history.push('/Groups');
+    }
     const options = [
         {value: 'no_filter', label: 'No filter'},
         {value: 'cyber_awareness', label: 'Cyber Awareness'},
@@ -48,6 +53,7 @@ function UsersList (props) {
     return (
         <div>
             <div>
+                <button onClick={groupView}>{`< Group View`}</button>
                 <h4 className="groupname">Group Name</h4>
             </div><br></br>
             <div>   
