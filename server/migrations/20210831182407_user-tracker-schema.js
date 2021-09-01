@@ -17,8 +17,11 @@ exports.up = function(knex) {
     table.integer('group_id');
     table.integer('organization_id').notNullable();
     table.bigInteger('dodid').notNullable();
+    table.string('rank');
+    table.string('grade');
     table.string('last_name');
     table.string('first_name');
+    table.string('email')
     table.foreign('group_id').references('id').inTable('groups');
     table.foreign('organization_id').references('id').inTable('organizations');
   })

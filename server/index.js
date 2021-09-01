@@ -10,7 +10,7 @@ app.get('/', (req,res) => {
     res.send('You have arrived on the landing page')
 })
 
-// app.get('/', (req, res) => {
+// app.get('/groups', (req, res) => {
     
 // })
 
