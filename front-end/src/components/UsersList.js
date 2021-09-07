@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -7,13 +7,16 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Select from 'react-select';
 import AddCertModal from './AddCertModal.js';
 import { useHistory } from 'react-router-dom';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import IconButton from '@material-ui/core/IconButton';
+
 
 function UsersList (props) {
     
     const [users, setUsers] = useState([])
     const [filtered, setFiltered] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:8080/group/${props.users}`)
+        fetch(`http://localhost:8080/group/${props.users[0]}`)
         .then(res=>res.json())
         .then(data=>{
             setUsers(data)
@@ -53,7 +56,7 @@ function UsersList (props) {
         <div>
             <div>
                 <button onClick={groupView}>{`< Group View`}</button>
-                <h4 className="groupname">{`Group ${props.users}`}</h4>
+                <h4 className="groupname">{props.users[1]}</h4>
             </div><br></br>
             <div>   
                 <Select options={options} onChange={handleChange} className="selectbar" placeholder="Filter by Certification..."/>
@@ -69,7 +72,7 @@ function MakeUser (props) {
     let userData = props.user;
     const [userInfo, setUserInfo] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:8080/users${userData.id}/trackers`)
+        fetch(`http://localhost:8080/user/${userData.id}/trackers`)
         .then(res=>res.json())
         .then(data=>{
             setUserInfo(data)
@@ -91,10 +94,15 @@ function MakeUser (props) {
                     <Typography>
                         <ul>
                         {userInfo.map((each,index)=>{
-                            return <li>this is a tracker</li>
+                            return <li key={index}>{`${each.sub_categories_title} - Due: ${each.due_date}`}</li>
                         })}
                         </ul>
-                        <AddCertModal />
+                        <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+                            <AddCertModal style={{width: '70%'}}/>
+                            <IconButton color="secondary" aria-label="delete" className="deletebutton" style={{width: '20%'}}>
+                                <RemoveCircleOutlineIcon fontSize="large" />
+                            </IconButton>
+                        </div>
                     </Typography>
                 </AccordionDetails>
             </Accordion>

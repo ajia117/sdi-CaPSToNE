@@ -82,21 +82,47 @@ app.get('/users/:userid', (req, res) => {
     })
 })
 
+// app.get('/user/:userid/trackers', (req, res) => {
+//     knex('tracker_users AS t_u')
+//     .join('users as u', 't_u.user_id', 'u.id')
+//     .join('trackers as t', 't_u.tracker_id', 't.id')
+//     .select(
+//         't_u.user_id',
+//         'u.name',
+//         'u_t.tracker_id',
+//         't.name',
+//         't_u.file_path',
+//         't_u.is_complete')
+//     .from('trackers')
+//     .where('user_id', req.params.userid)
+//     .then((data) => {
+//         res.send(data)
+//     })
+// })
 app.get('/user/:userid/trackers', (req, res) => {
-    knex('tracker_users AS t_u')
+    knex('trackers_users as t_u')
     .join('users as u', 't_u.user_id', 'u.id')
     .join('trackers as t', 't_u.tracker_id', 't.id')
+    .join('categories as c', 't.categories', 'c.id')
+    .join('sub_categories as s_c', 't.sub_categories', 's_c.id')
     .select(
         't_u.user_id',
-        'u.name',
-        'u_t.tracker_id',
-        't.name',
+        'u.last_name',
+        "u.first_name",
+        't_u.tracker_id',
+        't.categories',
+        'c.title AS categories_title',
+        't.sub_categories',
+        's_c.title AS sub_categories_title',
+        't.comments',
+        't.due_date',
+        't.next_date',
         't_u.file_path',
         't_u.is_complete')
-    .from('trackers')
     .where('user_id', req.params.userid)
     .then((data) => {
-        res.send(data)
+        console.log(data)
+        return(res.send(data))
     })
 })
 

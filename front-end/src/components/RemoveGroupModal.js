@@ -7,10 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import AddGroup from './AddGroup.js'
+import RemoveGroup from './RemoveGroup.js'
 import SendIcon from '@material-ui/icons/Send';
 import { InputAdornment } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+
 
 
 
@@ -33,9 +35,9 @@ export default function AlertDialogSlide(props) {
 
   return (
     <div>
-      <IconButton style={{ color: 'green' }} aria-label="delete" onClick={handleClickOpen}>
-      <GroupAddIcon />
-      </IconButton>
+      <IconButton color="secondary" aria-label="delete" className="deletebutton" onClick={handleClickOpen}>
+              <RemoveCircleOutlineIcon fontSize="large" />
+            </IconButton>
       {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Add User Info
       </Button> */}
@@ -49,7 +51,7 @@ export default function AlertDialogSlide(props) {
       >
         {/* <DialogTitle id="alert-dialog-slide-title">{"Add Group Info"}</DialogTitle> */}
         <DialogContent>
-      <AddGroup addGroup={props.addGroup} orgId={props.orgId} close={handleClose}/>
+      <RemoveGroup deleteGroup={props.deleteGroup} groups={props.groups}/>
       </DialogContent>
       </Dialog>
       
@@ -57,3 +59,6 @@ export default function AlertDialogSlide(props) {
     </div>
   );
 }
+
+
+

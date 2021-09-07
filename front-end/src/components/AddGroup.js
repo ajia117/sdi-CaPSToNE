@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,9 +10,6 @@ import {AssignmentIcon} from '@material-ui/icons/Assignment';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 import CardIcon from '@material-ui/icons/Payment';
-
-
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,14 +24,18 @@ const useStyles = makeStyles((theme) => ({
 export default function MultilineTextFields(props) {
   const classes = useStyles();
   const [text, setText] = React.useState('text');
- 
+  const [group, setGroup] = React.useState('')
 
 
   const handleChange = (event) => {
+    setGroup(event.target.value)
     setText(event.target.value);
   };
 
-  
+  function addGroup(){
+    props.addGroup([group, props.orgId])
+    setTimeout(props.close, 300);
+  }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -63,7 +64,7 @@ export default function MultilineTextFields(props) {
         size="large"
         className={classes.button}
         startIcon={<SendIcon />}
-        onClick={props.addGroup}
+        onClick={addGroup}
       >
         Submit
       </Button>

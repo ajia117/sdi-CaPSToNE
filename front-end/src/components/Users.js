@@ -4,124 +4,124 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
-import PhoneIcon from '@material-ui/icons/Phone';
+// import PhoneIcon from '@material-ui/icons/Phone';
 import PersonIcon from '@material-ui/icons/Person';
-import {AssignmentIcon} from '@material-ui/icons/Assignment';
+// import {AssignmentIcon} from '@material-ui/icons/Assignment';
 import SendIcon from '@material-ui/icons/Send';
 import Button from '@material-ui/core/Button';
 import CardIcon from '@material-ui/icons/Payment';
 
 
-const catagory = [
-  {
-    value: 'Enlisted',
-    label: 'Enlisted',
-  },
-  {
-    value: 'Officer',
-    label: 'Officer',
-  },
-  {
-    value: 'Warrant Officer',
-    label: 'Warrant Officer',
-  },
-];
+// const catagory = [
+//   {
+//     value: 'Enlisted',
+//     label: 'Enlisted',
+//   },
+//   {
+//     value: 'Officer',
+//     label: 'Officer',
+//   },
+//   {
+//     value: 'Warrant Officer',
+//     label: 'Warrant Officer',
+//   },
+// ];
 
 const rank = [
   {
-    value: 'Private',
+    value: 'E-1',
     label: 'Private',
   },
   {
-    value: 'Private Second Class',
+    value: 'E-2',
     label: 'Private Second Class',
   },
   {
-    value: 'Private First Class',
+    value: 'E-3',
     label: 'Private First Class',
   },
   {
-    value: 'Specialist/Corporal',
+    value: 'E-4',
     label: 'Specialist/Corporal',
   },
   {
-    value: 'Sergeant',
+    value: 'E-5',
     label: 'Sergeant',
   },
   {
-    value: 'Staff Sergeant',
+    value: 'E-6',
     label: 'Staff Sergeant',
   },
   {
-    value: 'Sergeant First Class',
+    value: 'E-7',
     label: 'Sergeant First Class',
   },
   {
-    value: 'Master Sergeant',
+    value: 'E-8',
     label: 'Master Sergeant',
   },
   {
-    value: 'Sargeant Major/Command Sergeant Major',
+    value: 'E-9',
     label: 'Sargeant Major/Command Sergeant Major',
   },
   {
-    value: '2nd Lieutenant',
+    value: 'O-1',
     label: '2nd Lieutenant',
   },
   {
-    value: '1st Lieutenant',
+    value: 'O-2',
     label: '1st Lieutenant',
   },
   {
-    value: 'Captain',
+    value: 'O-3',
     label: 'Captain',
   },
   {
-    value: 'Major',
+    value: 'O-4',
     label: 'Major',
   },
   {
-    value: 'Lieutenant Colonel',
+    value: 'O-5',
     label: 'Lieutenant Colonel',
   },
   {
-    value: 'Colonel',
+    value: 'O-6',
     label: 'Colonel',
   },
   {
-    value: 'Brigadier General',
+    value: 'O-7',
     label: 'Brigadier General',
   },
   {
-    value: 'Major General',
+    value: 'O-8',
     label: 'Major General',
   },
   {
-    value: 'Lieutenant General',
+    value: 'O-9',
     label: 'Lieutenant General',
   },
   {
-    value: 'General',
+    value: 'O-10',
     label: 'General',
   },
   {
-    value: 'Warrant Officer 1',
+    value: 'WO-1',
     label: 'Warrant Officer 1',
   },
   {
-    value: 'Chief Warrant Officer 2',
+    value: 'WO-2',
     label: 'Chief Warrant Officer 2',
   },
   {
-    value: 'Chief Warrant Officer 3',
+    value: 'WO-3',
     label: 'Chief Warrant Officer 3',
   },
   {
-    value: 'Chief Warrant Officer 4',
+    value: 'WO-4',
     label: 'Chief Warrant Officer 4',
   },
   {
-    value: 'Chief Warrant Officer 5',
+    value: 'WO-5',
     label: 'Chief Warrant Officer 5',
   },
 ];
@@ -136,32 +136,66 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MultilineTextFields() {
+export default function MultilineTextFields(props) {
   const classes = useStyles();
   const [text, setText] = React.useState('text');
-  const [catagories, setCatagory] = React.useState('text');
-  const [ranks, setRank] = React.useState('text');
-  
-
+  // const [catagories, setCatagory] = React.useState('');
+  const [ranks, setRank] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [dod, setDod] = React.useState('');
 
   const handleChange = (event) => {
     setText(event.target.value);
   };
 
-  const handleCatagoryChange = (event) => {
-    setCatagory(event.target.value);
-  };
+  // const handleCatagoryChange = (event) => {
+  //   console.log(event.target.value)
+  //   setCatagory(event.target.value);
+  // };
 
   const handleRankChange = (event) => {
+    console.log(event.target.value)
     setRank(event.target.value);
   };
+
+  function handleFirstName(event){
+    console.log(event.target.value)
+    setFirstName(event.target.value)
+  }
+
+  function handleLastName(event){
+    console.log(event.target.value)
+    setLastName(event.target.value)
+  }
+
+  function handleEmail(event){
+    console.log(event.target.value)
+    setEmail(event.target.value)
+  }
+
+  function handleDod(event){
+    console.log(event.target.value)
+    setDod(event.target.value)
+  }
+
+  // function handleSubmit(){
+  //   props.addUser([catagories, ranks, firstName, lastName, email, dod, props.orgId, props.groupId[0]])
+  //   setTimeout(props.close,300);
+  // }
+
+  function handleSubmit(){
+    props.addUser([ranks, firstName, lastName, email, dod, props.orgId, props.groupId[0]])
+    setTimeout(props.close,300);
+  }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <div>
 
       <p></p>
-      <TextField
+      {/* <TextField
       required
               id="outlined-select-Catagory"
               select
@@ -176,7 +210,7 @@ export default function MultilineTextFields() {
                   {option.label}
                 </MenuItem>
               ))}
-            </TextField>
+            </TextField> */}
             <TextField
             required
               id="outlined-select-rank"
@@ -199,7 +233,7 @@ export default function MultilineTextFields() {
             required
             label="First Name"
             id="standard-start-adornment"
-            onChange={handleChange}
+            onChange={handleFirstName}
             helperText="Please input your First name"
             InputProps={{
               startAdornment: <InputAdornment position="start"> <PersonIcon /> </InputAdornment>,
@@ -211,7 +245,7 @@ export default function MultilineTextFields() {
           required
           label="Last Name"
           id="standard-start-adornment"
-          onChange={handleChange}
+          onChange={handleLastName}
           helperText="Please input your Last Name"
           InputProps={{
             startAdornment: <InputAdornment position="start"> <PersonIcon /> </InputAdornment>,
@@ -224,7 +258,7 @@ export default function MultilineTextFields() {
             required
             label="Email"
             id="standard-start-adornment"
-            onChange={handleChange}
+            onChange={handleEmail}
             helperText="Please input your Email"
             InputProps={{
               startAdornment: <InputAdornment position="start"> <EmailIcon /> </InputAdornment>,
@@ -236,7 +270,7 @@ export default function MultilineTextFields() {
           required
           label="DODID"
           id="standard-start-adornment"
-          onChange={handleChange}
+          onChange={handleDod}
           helperText="Please input your DODID #"
           InputProps={{
             startAdornment: <InputAdornment position="start"> <CardIcon /> </InputAdornment>,
@@ -252,6 +286,7 @@ export default function MultilineTextFields() {
         size="large"
         className={classes.button}
         startIcon={<SendIcon />}
+        onClick={handleSubmit}
       >
         Submit
       </Button>

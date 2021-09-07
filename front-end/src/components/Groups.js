@@ -1,5 +1,5 @@
 import {Link, useHistory} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Groups (props){
 
@@ -9,10 +9,8 @@ function Groups (props){
         fetch('http://localhost:8080/all')
         .then(res=>res.json())
         .then(data=>{
-            setGroups(data)
+            setGroups(data.groups)
         })
-        .catch(err=>console.log(err)) 
-        
         props.view('group')
     },[])
     let groupRender = groups.map((each,index)=>{
@@ -29,12 +27,12 @@ function Groups (props){
 function OneGroup(props){
 
     function handleClick(){
-        props.renderUsers(props.group.group_id)
+        props.renderUsers([props.group.id, props.group.name])
     }
     return (
-        <Link to={`/Group_Users/${props.group.group_id}`} className="link">
+        <Link to={`/Group_Users/${props.group.name}`} className="link">
             <div className="onegroup" onClick={handleClick}>
-                {props.group.group_id}
+                {props.group.name}
             </div>
         </Link>
     )

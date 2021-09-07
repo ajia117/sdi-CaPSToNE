@@ -1,7 +1,8 @@
-import {useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import UserModal from './UserModal.js'
-import AddGroupModal from './AddGroupModal.js'
-// import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import AddGroupModal from './AddGroupModal.js';
+import RemoveGroupModal from './RemoveGroupModal';
+import RemoveUserModal from './RemoveUserModal.js';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import green from '@material-ui/core/colors';
@@ -43,16 +44,12 @@ function Sidebar (props) {
           </div>
             <br></br><br></br>
           <div className="left-items" style={props.view === 'group' ? { display: 'initial' } : {display: 'none'}}>
-            <AddGroupModal addGroup={props.addGroup} />
-            <IconButton color="secondary" aria-label="delete" className="deletebutton">
-              <RemoveCircleOutlineIcon fontSize="large" />
-            </IconButton>
+            <AddGroupModal addGroup={props.addGroup} orgId={props.orgId}/>
+            <RemoveGroupModal deleteGroup={props.deleteGroup} groups={props.groups}/>
           </div>
           <div className="left-items" style={props.view === 'users' ? { display: 'initial' } : {display: 'none'}}>
-            <UserModal />
-            <IconButton color="secondary" aria-label="delete" className="deletebutton">
-              <RemoveCircleOutlineIcon fontSize="large" />
-            </IconButton>
+            <UserModal addUser={props.addUser} orgId={props.orgId} groupId={props.groupId}/>
+            <RemoveUserModal deleteUser={props.deleteUser}/>
           </div>
         </div>
     )
